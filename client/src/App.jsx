@@ -1,9 +1,14 @@
+import {BrowserRouter} from 'react-router-dom'
+import AppRouter from './components/AppRouter'
+
 const App = () => {
+    
     return (
-        <div className="text-center">
-            IT works
-        </div>
+            <AppRouter msg={"messaagagaga"}>
+
+            </AppRouter>
     );
+    
 };
 
 export default App;
