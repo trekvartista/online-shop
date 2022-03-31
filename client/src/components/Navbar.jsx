@@ -17,7 +17,9 @@ import { Context } from "../main";
 import userIcon from "../assets/user.png";
 
 const pages = ["Products", "Pricing", "Blog"];
+
 const settings = ["Profile", "Account", "Dashboard", "Sign out"];
+
 const unauthorizedSettings = [
     {id: 1, name: "Settings", path: '/settings'},
     {id: 2, name: "Sign In", path: LOGIN_ROUTE},
@@ -28,6 +30,11 @@ const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { user } = useContext(Context);
+
+    const signOut = () => {
+        user.isAuth = false
+        user.userData = {}
+    }
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -163,16 +170,25 @@ const Navbar = () => {
                             onClose={handleCloseUserMenu}
                         >
                             { user.isAuth
-                                ? settings.map((setting, i) => (
-                                    <MenuItem
-                                        key={i}
-                                        onClick={handleCloseUserMenu}
-                                    >
+                                ?
+                                <Box>
+                                    <MenuItem>
                                         <Typography textAlign="center">
-                                            {setting}
+                                            Profile
                                         </Typography>
                                     </MenuItem>
-                                ))
+                                    <MenuItem>
+                                        <Typography textAlign="center">
+                                            Settings
+                                        </Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={() => signOut()}>
+                                        <Typography textAlign="center">
+                                            Sign Out
+                                        </Typography>
+                                    </MenuItem>
+                                </Box>
+
                                 : unauthorizedSettings.map((setting, i) => (
                                     <NavLink to={setting.path} key={i}>
                                         <MenuItem>

@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 export const Context = React.createContext()
 const user = {
-    isAuth: true,
+    isAuth: !true,
     userData: {}
 }
 
@@ -30,7 +30,6 @@ const brands = [
     {id: 3, name: 'Acer'},
     {id: 4, name: 'Apple'},
 ]
-
 
 ReactDOM.render(
     <Context.Provider value={{
