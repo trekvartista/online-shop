@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
 import { SHOP_ROUTE , LOGIN_ROUTE, REGISTER_ROUTE, ADMIN_ROUTE} from "../utils/consts";
 import { useContext, useState } from "react";
-import { Context } from "../main";
+import { Context } from "../App";
 import userIcon from "../assets/user.png";
 
 const pages = ["Products", "Pricing", "Blog"];

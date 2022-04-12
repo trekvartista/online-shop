@@ -11,7 +11,7 @@ import {
     Select,
     Typography,
 } from "@mui/material";
-import { Context } from "../../main";
+import { Context } from "../../App";
 
 const style = {
     position: "absolute",

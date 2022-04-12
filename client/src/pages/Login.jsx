@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { REGISTER_ROUTE , SHOP_ROUTE} from "../utils/consts";
 import { login } from "../api/userAPI";
 import { useContext, useEffect } from "react";
-import { Context } from "../main";
+import { Context } from "../App";
 
 const Login = ({ error, captchaURL }) => {
     const {

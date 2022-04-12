@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { fetchTypes } from '../api/itemAPI';
 import Brandbar from '../components/Brandbar';
 import ItemsList from '../components/ItemsList';
 import Typebar from '../components/Typebar';
+import {Context} from '../App'
 
 const Shop = () => {
 
     const [selectedType, setSelectedType]  = useState('')
     const [selectedBrand, setSelectedBrand]  = useState('')
+
+    const {types} = useContext(Context)
+
+    useEffect(() => {
+        fetchTypes().then(data => types.setTypes(data))
+    }, [])
 
     return (
         <div className=''>

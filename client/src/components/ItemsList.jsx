@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {Context} from '../main'
+import {Context} from '../App'
 import Item from './Item';
 
 const ItemsList = () => {

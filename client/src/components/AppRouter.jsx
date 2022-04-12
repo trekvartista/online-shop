@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 // import { itemContext, userContext } from '../main';
 import {authRoutes, publicRoutes} from '../routes'
 import {LOGIN_ROUTE, SHOP_ROUTE, REGISTER_ROUTE} from '../utils/consts'
-import {Context} from '../main'
+import {Context} from '../App'
 import Login from '../pages/Login';
 import Registration from '../pages/Registration';
 

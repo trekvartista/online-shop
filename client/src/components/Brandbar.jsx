@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {Context} from '../main'
+import {Context} from '../App'
 
 const Brandbar = ({selectedBrand, setSelectedBrand}) => {
 
@@ -9,7 +9,7 @@ const Brandbar = ({selectedBrand, setSelectedBrand}) => {
         <div className='flex flex-wrap flex-row max-w-full h-fit border-2 shadow-md'>
             {
                 brands.map((brand) => 
-                    <div key={brand.id} className={`cursor-pointer h-12 rounded p-1 mx-[2px] ${selectedBrand && selectedBrand.id === brand.id ? 'outline ouline-1 outline-red-400' : 'hover:bg-gray-100 '} `}
+                    <div key={brand.id} className={`cursor-pointer h-12 rounded p-1 mx-[2px] ${selectedBrand && selectedBrand.id === brand.id ? 'outline ouline-1 outline-red-600' : 'hover:bg-gray-100 '} `}
                             onClick={() => setSelectedBrand(brand)}
                     >
                         <div className='m-2'>    

@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import {Context} from '../main'
+import {Context} from '../App'
 
 const Typebar = ({selectedType, setSelectedType}) => {
 
     const {types} = useContext(Context)
+    // console.log(types)
 
     return (
         <div className='inline-block mx-8 mt-14 w-[200px] border-2 shadow-xl'>
             {
-                types.map((type) => 
+                types.types.map((type) => 
                     <div key={type.id} className={`cursor-pointer p-1  ${selectedType && selectedType.id === type.id ? 'text-white bg-blue-500' : 'hover:bg-gray-100 '} `}
                             onClick={() => setSelectedType(type)}
                     >

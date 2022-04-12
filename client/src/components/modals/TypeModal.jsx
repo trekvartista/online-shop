@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Box, Button, FormControl, Input, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material";
-import {Context} from '../../main'
+import {Context} from '../../App'
 
 const style = {
     position: "absolute",
