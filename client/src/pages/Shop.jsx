@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { fetchTypes } from '../api/itemAPI';
+import { fetchBrands, fetchItems, fetchTypes } from '../api/itemAPI';
 import Brandbar from '../components/Brandbar';
 import ItemsList from '../components/ItemsList';
 import Typebar from '../components/Typebar';
@@ -11,9 +11,13 @@ const Shop = () => {
     const [selectedBrand, setSelectedBrand]  = useState('')
 
     const {types} = useContext(Context)
+    const {brands} = useContext(Context)
+    const {items} = useContext(Context)
 
     useEffect(() => {
         fetchTypes().then(data => types.setTypes(data))
+        fetchBrands().then(data => brands.setBrands(data))
+        fetchItems().then(data => items.setItems(data.rows))
     }, [])
 
     return (

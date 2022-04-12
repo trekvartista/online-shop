@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Box, Button, FormControl, Input, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material";
+import { Box, Button, FormControl, Input, InputLabel, MenuItem, Modal, TextField, Typography } from "@mui/material";
 import {Context} from '../../App'
+import { createBrand } from "../../api/itemAPI";
 
 const style = {
     position: "absolute",
@@ -18,11 +19,18 @@ const BrandModal = ({ show, setVisible }) => {
 
     const { brands } = useContext(Context);
 
-    const [age, setAge] = useState("");
+    const [value, setValue] = useState("");
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setValue(event.target.value);
     };
+
+    const addBrand = () => {
+        createBrand( {name: value} ).then(data => {
+            setValue('')
+            setVisible(false)
+        })
+    }
 
     return (
         <div className="flex mt-5">
@@ -43,27 +51,20 @@ const BrandModal = ({ show, setVisible }) => {
                     </Typography>
                     
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                            Select brand
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            label="__________"
+                    <TextField
+                            id="standard-basic"
+                            variant="standard"
+                            label="Type the name..."
+                            autoComplete="off"
+                            
                             onChange={handleChange}
                         >
-                            {brands.map((brand, i) => (
-                                <MenuItem key={i} value={brand.name}>
-                                    {brand.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
+                    </TextField>
                     </FormControl>
 
                     <div className="flex flex-row justify-between max-w-[150px] mt-4 ml-auto">
-                        <Button variant="outlined" color="success"> Add </Button>
-                        <Button variant="outlined" onClick={() => setVisible(false)}> Close </Button>
+                        <Button variant="outlined" color="success" onClick={() => addBrand()}> Add </Button>
+                        <Button variant="outlined" color="error" onClick={() => setVisible(false)}> Close </Button>
                     </div>
                 </Box>
             </Modal>

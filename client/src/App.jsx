@@ -8,11 +8,11 @@ export const Context = createContext();
 
 const App = () => {
     const user = {
-        isAuth: !true,
+        isAuth: true,
         userData: {},
-    };
+    }
 
-    const items = [
+    const initialItems = [
         {
             id: 1,
             name: "Redmi Note 7",
@@ -41,53 +41,45 @@ const App = () => {
             rating: 4,
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHjAiozWwIbPZ6CwXEk7qP6zvTaRRFLMEDtw&usqp=CAU",
         },
-    ];
+    ]
 
-    const [types, setTypes] = useState([
-        { id: 1, name: "Smartphones" },
-        { id: 2, name: "Laptops" },
-        { id: 3, name: "TVs" },
-        { id: 4, name: "Fridges" },
-    ]);
+    const [items, setItems] = useState([])
 
-    const brands = [
-        { id: 1, name: "Xiaomi" },
-        { id: 2, name: "Samsung" },
-        { id: 3, name: "Acer" },
-        { id: 4, name: "Apple" },
-    ];
+    const [types, setTypes] = useState([])
 
-    const [loading, setLoading] = useState(true);
+    const [brands, setBrands] = useState([])
+
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         setTimeout(() => {
             authCheck()
                 .then((data) => {
                     user.isAuth = true;
-                    user.userData = { ...data };
+                    user.userData = { ...data }
                     // console.log(user.isAuth)
                 })
                 .finally(() => setLoading(false));
-        }, 1000);
-    }, []);
+        }, 1000)
+    }, [])
 
     if (loading) {
-        return <CircularProgress className="fixed left-1/2 top-1/2" />;
+        return <CircularProgress className="fixed left-1/2 top-1/2" />
     }
 
     return (
         <Context.Provider
             value={{
                 user,
-                items,
+                items: { items, setItems },
                 types: { types, setTypes },
-                brands,
+                brands: { brands, setBrands },
             }}
         >
             <Navbar />
             <AppRouter />
         </Context.Provider>
-    );
-};
+    )
+}
 
 export default App;

@@ -75,7 +75,7 @@ const ItemModal = ({ show, setVisible }) => {
                                 onChange={(e) => setType(e.target.value)}
                             >
                                 {
-                                    types.map((type, i) => (
+                                    types.types.map((type, i) => (
                                         <MenuItem key={i} value={type.name}>
                                             {type.name}
                                         </MenuItem>
@@ -99,7 +99,7 @@ const ItemModal = ({ show, setVisible }) => {
                                 onChange={(e) => setBrand(e.target.value)}
                             >
                                 {
-                                    brands.map((brand, i) => (
+                                    brands.brands.map((brand, i) => (
                                         <MenuItem key={i} value={brand.name}>
                                             {brand.name}
                                         </MenuItem>

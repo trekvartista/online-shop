@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { fetchConcreteItem } from '../api/itemAPI';
 import star from '../assets/star.png'
+import {API_URL} from '../utils/consts'
 
 const Item = () => {
 
@@ -11,18 +14,24 @@ const Item = () => {
         {id: 5, name: 'Battery', description: '4000 mAh'},
     ]
 
+    const [item, setItem] = useState({info: []})
+    const { id } = useParams()
+
+    useEffect(() => {
+        fetchConcreteItem(id).then(data => setItem(data))
+    }, [])
+
     return (
         <div>
             <div className='container flex flex-wrap lg:flex-nowrap px-24 py-12'>
                 <div className='bg-gray-200 mt-5 ml-14 p-2 w-80 h-80 flex shrink-0'>
-                    <img className='w-80 h-80' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiX065KSgPh8pz4dwUKtNzfirKZYQcKlcLTw&usqp=CAU" alt=""/>
+                    <img className='w-80 h-80' src={API_URL + item.img} alt=""/>
                 </div>
                 <div className='flex flex-col mx-14 lg:mx-8'>
                     <div className='mt-5 flex flex-col max-w-2xl'>
                         <span className=' text-3xl font-medium'>Redmi Note 6</span>
                         <span className='mt-3 text-base'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            {item.info}
                         </span>
                         <div className='flex flex-row'>
                             <div className='mt-3 flex flex-row justify-between w-32'>  
@@ -36,7 +45,7 @@ const Item = () => {
                         </div>
 
                         <div className='my-4 text-xl font-bold'>
-                            KGS 12500
+                            {item.price} KGS
                         </div>
                     </div>
 

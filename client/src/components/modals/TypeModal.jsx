@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Box, Button, FormControl, Input, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material";
+import { Box, Button, FormControl, Input, InputLabel, MenuItem, Modal, Select, TextField, Typography } from "@mui/material";
 import {Context} from '../../App'
+import { createType } from "../../api/itemAPI";
 
 const style = {
     position: "absolute",
@@ -18,11 +19,18 @@ const TypeModal = ({ show, setVisible }) => {
 
     const { types } = useContext(Context);
 
-    const [age, setAge] = useState("");
+    const [type, setType] = useState("");
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setType(event.target.value);
     };
+
+    const addType = () => {
+        createType( {name: type} ).then(data => {
+            setType('')
+            setVisible(false)
+        })
+    }
 
     return (
         <div className="flex mt-5">
@@ -43,27 +51,19 @@ const TypeModal = ({ show, setVisible }) => {
                     </Typography>
                     
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">
-                            Select type
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            label="_________"
+                        <TextField
+                            id="standard-basic"
+                            variant="standard"
+                            label="Type the name..."
+                            autoComplete="off"
                             onChange={handleChange}
                         >
-                            {types.map((type, i) => (
-                                <MenuItem key={i} value={type.name}>
-                                    {type.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
+                    </TextField>
                     </FormControl>
 
                     <div className="flex flex-row justify-between max-w-[150px] mt-4 ml-auto">
-                        <Button variant="outlined" color="success"> Add </Button>
-                        <Button variant="outlined" onClick={() => setVisible(false)}> Close </Button>
+                        <Button variant="outlined" color="success" onClick={() => addType()}> Add </Button>
+                        <Button variant="outlined" color="error" onClick={() => setVisible(false)}> Close </Button>
                     </div>
                 </Box>
             </Modal>
