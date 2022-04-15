@@ -83,7 +83,8 @@ const ItemModal = ({ show, setVisible }) => {
         formData.append('info', JSON.stringify(info))
 
         createItem(formData).then(data => setVisible(false))
-        // console.log(formData)
+        
+        // console.log(info)
     }
 
     return (
