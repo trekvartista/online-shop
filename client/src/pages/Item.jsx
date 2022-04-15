@@ -14,7 +14,13 @@ const Item = () => {
         {id: 5, name: 'Battery', description: '4000 mAh'},
     ]
 
-    const [item, setItem] = useState({info: []})
+    const [item, setItem] = useState({
+        id: '',
+        img: null,
+        info: [],
+        price: 0,
+
+    })
     const { id } = useParams()
 
     useEffect(() => {
@@ -30,9 +36,7 @@ const Item = () => {
                 <div className='flex flex-col mx-14 lg:mx-8'>
                     <div className='mt-5 flex flex-col max-w-2xl'>
                         <span className=' text-3xl font-medium'>{item.name}</span>
-                        <span className='mt-3 text-base'>
-                            {item.info}
-                        </span>
+
                         <div className='flex flex-row'>
                             <div className='mt-3 flex flex-row justify-between w-32'>  
                                 <img className='w-5 h-5' src={star} alt=""/>
@@ -60,7 +64,7 @@ const Item = () => {
                     {
                         item.info.map( (spec, i) => (
                             <div key={spec.id} className={`${!(i % 2) ? 'bg-gray-100' : 'bg-transparent'} p-1`}>
-                                <b>{spec.name}</b>: {spec.description}
+                                <b>{spec.title}</b>: {spec.description}
                             </div>
                         ) )
                     }

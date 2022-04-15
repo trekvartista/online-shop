@@ -167,7 +167,7 @@ const ItemModal = ({ show, setVisible }) => {
                             {
                                 info.map( (item, i) => (
                                     <Box key={i} className="flex flex-row my-2">
-                                            <Input placeholder="Title" value={item.title} onChange={(e) => changeInfo('name', e.target.value, item.number)}/>
+                                            <Input placeholder="Title" value={item.title} onChange={(e) => changeInfo('title', e.target.value, item.number)}/>
                                             <Input placeholder="Info"  className="mx-5" value={item.description} onChange={(e) => changeInfo('description', e.target.value, item.number)}/>
                                             <Button variant="outlined" color="error" onClick={() => deleteInfo(item.number)}>Delete</Button>
                                         </Box>
