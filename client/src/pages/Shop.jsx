@@ -4,6 +4,7 @@ import Brandbar from '../components/Brandbar';
 import ItemsList from '../components/ItemsList';
 import Typebar from '../components/Typebar';
 import {Context} from '../App'
+import Pages from '../components/Pages';
 
 const Shop = () => {
 
@@ -24,9 +25,10 @@ const Shop = () => {
         <div className=''>
             <div className='flex flex-wrap sm:flex-nowrap mb-12'>
                 <Typebar selectedType={selectedType} setSelectedType={setSelectedType} />
-                <div className='mx-8 sm:mx-4 mt-4 sm:mt-14'>
+                <div className='mx-8 sm:mx-4 my-4 sm:mt-14'>
                     <Brandbar selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand} />
                     <ItemsList />
+                    <Pages />
                 </div>
             </div>
             <footer className='fixed left-0 bottom-0 w-full p-2 text-center bg-gray-200'>

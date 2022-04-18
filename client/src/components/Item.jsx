@@ -4,6 +4,7 @@ import star from "../assets/star.png";
 import {API_URL, ITEM_ROUTE} from '../utils/consts'
 
 const Item = ({ item }) => {
+    
     return (
         <NavLink to={ITEM_ROUTE + '/' + item.id} className="m-2">
 
