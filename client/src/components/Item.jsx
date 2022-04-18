@@ -5,9 +5,9 @@ import {API_URL, ITEM_ROUTE} from '../utils/consts'
 
 const Item = ({ item }) => {
     return (
-        <NavLink to={ITEM_ROUTE + '/' + item.id}>
+        <NavLink to={ITEM_ROUTE + '/' + item.id} className="m-2">
 
-            <div className="flex flex-wrap items-center justify-center  border-2 w-[200px] h-[300px] m-2">
+            <div className="flex flex-wrap items-center justify-center  border-2 w-[200px] h-[300px]">
                 <img src={API_URL + item.img} alt="" className="max-h-52 w-auto"/>
                 <div className="flex justify-between">
                     <div className="text-gray-500">
