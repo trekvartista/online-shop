@@ -62,7 +62,7 @@ const Navbar = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
                     >
-                        <NavLink to={SHOP_ROUTE}> ЛУЧ НАДЕЖДЫ </NavLink>
+                        <NavLink to={SHOP_ROUTE}> ONLINE SHOP </NavLink>
                     </Typography>
 
                     <Box

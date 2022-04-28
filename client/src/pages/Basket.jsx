@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {Context} from '../App'
 import {API_URL} from '../utils/consts'
 import star from "../assets/star.png"
 import ClearIcon from '@mui/icons-material/Clear';
+import { Badge, Button, ButtonGroup, Tooltip } from '@mui/material';
 
 const Basket = () => {
 
     const {items} = useContext(Context)
+
+    const [quantity, setQuantity] = useState(1)
+
+    const changeQuantity = (value) => {
+        setQuantity(quantity + value)
+    }
 
     return (
         <div className='flex gap-4 bg-gray-100 py-4 px-10'>
@@ -34,10 +41,26 @@ const Basket = () => {
                                     <span className='text-xl font-medium'> {item.rating} </span>
                                     <img src={star} alt="" className='w-5 h-5'/>
                                 </div>
+
+                                <div className='flex'>
+                                    <ButtonGroup color='success' variant='text'>
+                                        <Button onClick={() => changeQuantity(-1)}>
+                                            -
+                                        </Button>
+                                        <Button>
+                                            {quantity}
+                                        </Button>
+                                        <Button onClick={() => changeQuantity(1)}>
+                                            +
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
                             </div>
 
-                            <div className='w-9 h-9 hover:bg-red-700 rounded-full flex items-center justify-center hover:scale-95 hover:text-white ml-auto mr-5'>
-                                <ClearIcon fontSize='large'/>
+                            <div className='flex items-center justify-center w-9 h-9 ml-auto mr-5 rounded-full hover:scale-95 hover:text-white hover:bg-red-700'>
+                                <Tooltip title="Remove">
+                                    <ClearIcon fontSize='large'/>
+                                </Tooltip>
                             </div>
                         </div>
                     ))
