@@ -11,10 +11,11 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
-import { SHOP_ROUTE , LOGIN_ROUTE, REGISTER_ROUTE, ADMIN_ROUTE} from "../utils/consts";
+import { SHOP_ROUTE , LOGIN_ROUTE, REGISTER_ROUTE, ADMIN_ROUTE, BASKET_ROUTE} from "../utils/consts";
 import { useContext, useState } from "react";
 import { Context } from "../App";
 import userIcon from "../assets/user.png";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const pages = ["Products", "Pricing", "Blog"];
 
@@ -110,19 +111,7 @@ const Navbar = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: "flex", md: "none" },
-                        }}
-                    >
-                        <NavLink to={SHOP_ROUTE}>
-                            Сонун экен
-                        </NavLink>
-                    </Typography>
+
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -140,8 +129,15 @@ const Navbar = () => {
                         ))}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
+
+                        <NavLink to={BASKET_ROUTE} className="hover:text-gray-300 transition-colors duration-500">
+                            <ShoppingCartIcon />
+                            <span>
+                                My Basket
+                            </span>
+                        </NavLink>
                         <NavLink to={ADMIN_ROUTE}>
-                            <button className="mr-5 p-1 border-2 border-white rounded">
+                            <button className="mx-5 p-1 border-2 border-white rounded">
                                 ADMIN PAGE
                             </button>
                         </NavLink>
@@ -149,6 +145,7 @@ const Navbar = () => {
                             <IconButton
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
+                                className="float-right"
                             >
                                 <Avatar alt={user.name} src={userIcon} />
                             </IconButton>

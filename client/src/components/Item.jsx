@@ -5,11 +5,11 @@ import star from "../assets/star.png";
 import { API_URL, ITEM_ROUTE } from "../utils/consts";
 
 const Item = ({ item }) => {
+    
     const { types } = useContext(Context);
     const { brands } = useContext(Context);
 
     let item_type = types.types.find((type) => type.id === item.typeId);
-
     let item_brand = brands.brands.find((brand) => brand.id === item.brandId);
 
     return (
