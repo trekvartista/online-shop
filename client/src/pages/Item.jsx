@@ -6,14 +6,6 @@ import {API_URL} from '../utils/consts'
 
 const Item = () => {
 
-    const description = [
-        {id: 1, name: 'RAM', description: '4 GB'},
-        {id: 2, name: 'ROM', description: '32 GB'},
-        {id: 3, name: 'Camera', description: '48 MP'},
-        {id: 4, name: 'CPU', description: 'Qualcomm SDM660 Snapdragon 660 Octa-core'},
-        {id: 5, name: 'Battery', description: '4000 mAh'},
-    ]
-
     const [item, setItem] = useState({
         id: '',
         img: null,
