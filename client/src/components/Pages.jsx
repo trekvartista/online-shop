@@ -2,19 +2,14 @@ import { Pagination, Stack, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { Context } from "../App";
 
-const Pages = () => {
-    const { items } = useContext(Context);
+const Pages = ({ page, handlePageChange, pagesCount }) => {
 
-    const [page, setPage] = useState(1);
-    
-    const handleChange = (e, value) => {
-        setPage(value);
-    };
+    const { items } = useContext(Context);
 
     return (
         <Stack spacing={2}>
             <Typography>Page: {page}</Typography>
-            <Pagination count={10} page={page} onChange={handleChange} />
+            <Pagination count={pagesCount} page={page} onChange={handlePageChange} />
         </Stack>
     );
 };

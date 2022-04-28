@@ -10,6 +10,24 @@ const Shop = () => {
 
     const [selectedType, setSelectedType]  = useState('')
     const [selectedBrand, setSelectedBrand]  = useState('')
+    const [totalCount, setTotalCount] = useState()
+
+    const selectType = (type) => {
+        if (selectedType === type) {
+            setSelectedType('')
+        }
+        else {
+            setSelectedType(type)
+        }
+    }
+    const selectBrand = (brand) => {
+        if (selectedBrand === brand) {
+            setSelectedBrand('')
+        }
+        else {
+            setSelectedBrand(brand)
+        }
+    }
 
     const {types} = useContext(Context)
     const {brands} = useContext(Context)
@@ -18,17 +36,43 @@ const Shop = () => {
     useEffect(() => {
         fetchTypes().then(data => types.setTypes(data))
         fetchBrands().then(data => brands.setBrands(data))
-        fetchItems().then(data => items.setItems(data.rows))
+        fetchItems(null, null, 1, 3).then(data => {
+            
+            items.setItems(data.rows)
+            setTotalCount(data.count)
+            // console.log(totalCount, limit)
+            // debugger
+        })
     }, [])
+
+    const limit = 3
+
+    const [page, setPage] = useState(1);
+    const pagesCount = Math.ceil(totalCount / limit)
+
+    const handlePageChange = (e, value) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        fetchItems(selectedType.id, selectedBrand.id, page, pagesCount).then(data => {
+            
+            items.setItems(data.rows)
+            setTotalCount(data.count)
+            // console.log(totalCount, limit)
+            // debugger
+
+        })
+    }, [selectedType, selectedBrand, page])
 
     return (
         <div className=''>
             <div className='flex flex-wrap sm:flex-nowrap mb-12'>
-                <Typebar selectedType={selectedType} setSelectedType={setSelectedType} />
+                <Typebar selectedType={selectedType} selectType={selectType} />
                 <div className='mx-8 sm:mx-4 my-4 sm:mt-14'>
-                    <Brandbar selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand} />
+                    <Brandbar selectedBrand={selectedBrand} selectBrand={selectBrand} />
                     <ItemsList />
-                    <Pages />
+                    <Pages page={page} handlePageChange={handlePageChange} pagesCount={pagesCount}/>
                 </div>
             </div>
             <footer className='fixed left-0 bottom-0 w-full p-2 text-center bg-gray-200'>
