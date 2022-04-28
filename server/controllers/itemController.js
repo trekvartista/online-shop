@@ -35,27 +35,30 @@ class ItemController {
     }
     
     async getAll(req, res) {
-        let {brandID, typeID, limit, page} = req.query
-        console.log(req.query)
+
+        // once again when destructuring objects, names MUST BE the same!
+        let {typeId, brandId, limit, page} = req.query
+
+        console.log('=================-=======================+', req.query)
         page = page || 1
-        limit = limit || 10
+        limit = limit || 9
 
         let offset = page * limit - limit
 
         let items;
 
-        if (!brandID && !typeID) {
+        if (!brandId && !typeId) {
             items = await Item.findAndCountAll({limit, offset})
         }
-        if (brandID && !typeID) {
+        if (brandId && !typeId) {
             //                          search by fileds
-            items = await Item.findAndCountAll({where: {brandID}, limit, offset})
+            items = await Item.findAndCountAll({where: {brandId}, limit, offset})
         }
-        if (!brandID && typeID) {
-            items = await Item.findAndCountAll({where: {typeID},  limit, offset})
+        if (!brandId && typeId) {
+            items = await Item.findAndCountAll({where: {typeId},  limit, offset})
         }
-        if (brandID && typeID) {
-            items = await Item.findAndCountAll({where: {brandID, typeID}, limit, offset})
+        if (brandId && typeId) {
+            items = await Item.findAndCountAll({where: {brandId, typeId}, limit, offset})
         }
 
         return res.json(items)
