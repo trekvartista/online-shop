@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Context} from '../App'
 
-const Brandbar = ({selectedBrand, setSelectedBrand}) => {
+const Brandbar = ({selectedBrand, selectBrand}) => {
 
     const { brands } = useContext(Context)
 
@@ -10,7 +10,7 @@ const Brandbar = ({selectedBrand, setSelectedBrand}) => {
         {
             brands.brands.map((brand) => 
                 <div key={brand.id} className={`cursor-pointer h-12 rounded p-1 mx-[2px] ${selectedBrand && selectedBrand.id === brand.id ? 'outline ouline-1 outline-red-600' : 'hover:bg-gray-100 '} `}
-                        onClick={() => setSelectedBrand(brand)}
+                        onClick={() => selectBrand(brand)}
                 >
                     <div className='m-2'>    
                             {brand.name}

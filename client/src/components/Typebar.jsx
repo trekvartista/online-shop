@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Context} from '../App'
 
-const Typebar = ({selectedType, setSelectedType}) => {
+const Typebar = ({selectedType, selectType}) => {
 
     const { types } = useContext(Context)
     // console.log(types.types)
@@ -11,7 +11,7 @@ const Typebar = ({selectedType, setSelectedType}) => {
         {
             types.types.map((type) => 
                 <div key={type.id} className={`cursor-pointer p-1  ${selectedType && selectedType.id === type.id ? 'text-white bg-blue-500' : 'hover:bg-gray-100 '} `}
-                        onClick={() => setSelectedType(type)}
+                        onClick={() => selectType(type)}
                 >
                     <div
                         className="m-2"
