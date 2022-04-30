@@ -26,7 +26,6 @@ class ItemController {
                     })
                 )
             }
-
             
             return res.json(item)
         } catch (e) {
