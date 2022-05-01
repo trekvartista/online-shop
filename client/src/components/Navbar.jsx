@@ -12,10 +12,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
 import { SHOP_ROUTE , LOGIN_ROUTE, REGISTER_ROUTE, ADMIN_ROUTE, BASKET_ROUTE} from "../utils/consts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { Context } from "../App";
 import userIcon from "../assets/user.png";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 const pages = ["Products", "Pricing", "Blog"];
 
@@ -30,6 +32,8 @@ const unauthorizedSettings = [
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+
+    const navigate = useNavigate()
     const { user } = useContext(Context);
 
     const signOut = () => {
@@ -51,6 +55,10 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    useEffect(() => {
+        handleCloseUserMenu()
+    }, [navigate])
 
     return (
         <AppBar position="static">
