@@ -55,8 +55,8 @@ Basket.belongsTo(User)
 User.hasMany(Rating)
 Rating.belongsTo(User)
 
-Basket.hasMany(BasketItem)
-BasketItem.belongsTo(Basket)
+Basket.hasMany(BasketItem, { as: "basket_items" })
+BasketItem.belongsTo(Basket, { foreignKey: "basketId", as: "basket" })
 
 Type.hasMany(Item)
 Item.belongsTo(Type)
@@ -75,6 +75,8 @@ ItemInfo.belongsTo(Item)
 
 Type.belongsToMany(Brand, {through: TypeBrand})
 Brand.belongsToMany(Type, {through: TypeBrand})
+
+sequelize.sync();
 
 module.exports = {
     User, Basket, BasketItem, Item, ItemInfo, Brand, Type, Rating, TypeBrand
