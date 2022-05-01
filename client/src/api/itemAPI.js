@@ -40,8 +40,8 @@ export const fetchConcreteItem = async (id) => {
 }
 
 
-export const addItemToBasket = async (id) => {
-    const { data } = await $authHost.post("api/basket/" + id)
+export const addItemToBasket = async (basketItem) => {
+    const { data } = await $authHost.post("api/basket", basketItem)
 
     return data
 }
