@@ -37,8 +37,10 @@ const Navbar = () => {
     const { user } = useContext(Context);
 
     const signOut = () => {
-        user.isAuth = false
-        user.userData = {}
+        // user.isAuth = false
+        // user.userData = {}
+
+        user.setUser({ isAuth: false, userData: {} })
     }
 
     const handleOpenNavMenu = (event) => {
@@ -174,7 +176,7 @@ const Navbar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            { user.isAuth
+                            { user.user.isAuth
                                 ?
                                 <Box>
                                     <MenuItem>

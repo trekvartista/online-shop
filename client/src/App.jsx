@@ -7,10 +7,6 @@ import Navbar from "./components/Navbar";
 export const Context = createContext();
 
 const App = () => {
-    const user = {
-        isAuth: true,
-        userData: {},
-    }
 
     const initialItems = [
         {
@@ -43,6 +39,8 @@ const App = () => {
         },
     ]
 
+    const [user, setUser] = useState({})
+
     const [items, setItems] = useState([])
 
     const [types, setTypes] = useState([])
@@ -55,12 +53,15 @@ const App = () => {
         setTimeout(() => {
             authCheck()
                 .then((data) => {
-                    user.isAuth = true;
-                    user.userData = { ...data }
+                    // user.isAuth = true;
+                    // user.userData = { ...data }
+
+                    const user = { isAuth: true, userData: { ...data } }
+                    setUser(user)
                     // console.log(user.isAuth)
                 })
                 .finally(() => setLoading(false));
-        }, 1000)
+        }, 100)
     }, [])
 
     if (loading) {
@@ -70,7 +71,7 @@ const App = () => {
     return (
         <Context.Provider
             value={{
-                user,
+                user: { user, setUser },
                 items: { items, setItems },
                 types: { types, setTypes },
                 brands: { brands, setBrands },

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 // import { itemContext, userContext } from '../main';
 import {authRoutes, publicRoutes} from '../routes'
@@ -10,12 +10,16 @@ import Registration from '../pages/Registration';
 const AppRouter = () => {
 
     
-    const {user} = useContext(Context)
+    const { user } = useContext(Context)
+
+    useEffect(() => {
+        console.log(user)
+    }, [])
 
     return (
         <Routes>
             {
-                user.isAuth && authRoutes.map( ( {path, Component} ) => 
+                user.user.isAuth && authRoutes.map( ( {path, Component} ) => 
                     <Route key={path} path={path} element={<Component />} />
                 )
             }

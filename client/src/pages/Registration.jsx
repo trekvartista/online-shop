@@ -14,20 +14,23 @@ const Registration = ({ error, captchaURL }) => {
         watch,
     } = useForm();
 
-    const {user} = useContext(Context)
+    const { user } = useContext(Context)
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user.isAuth) {
+
+        if (user.user.isAuth) {
             navigate(SHOP_ROUTE)
         }
     }, [])
 
     const onSubmit = async (email, password, repeat) => {
+
         let userInfo = await registration(email, password)
+
+        // ??
+
         console.log(userInfo)
-
-
     };
 
     return (
