@@ -38,7 +38,7 @@ class ItemController {
         // once again when destructuring objects, names MUST BE the same!
         let {typeId, brandId, limit, page} = req.query
 
-        console.log('=================-=======================+', req.query)
+        // console.log('=================-=======================+', req.query)
         page = page || 1
         limit = limit || 9
 
