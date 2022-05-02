@@ -32,11 +32,13 @@ const Shop = () => {
     const {types} = useContext(Context)
     const {brands} = useContext(Context)
     const {items} = useContext(Context)
+    
+    const limit = 2
 
     useEffect(() => {
         fetchTypes().then(data => types.setTypes(data))
         fetchBrands().then(data => brands.setBrands(data))
-        fetchItems(null, null, 1, 3).then(data => {
+        fetchItems(null, null, 1, limit).then(data => {
             
             items.setItems(data.rows)
             setTotalCount(data.count)
@@ -45,7 +47,6 @@ const Shop = () => {
         })
     }, [])
 
-    const limit = 3
 
     const [page, setPage] = useState(1);
     const pagesCount = Math.ceil(totalCount / limit)
@@ -55,13 +56,10 @@ const Shop = () => {
     };
 
     useEffect(() => {
-        fetchItems(selectedType.id, selectedBrand.id, page, pagesCount).then(data => {
+        fetchItems(selectedType.id, selectedBrand.id, page || 1, limit).then(data => {
             
             items.setItems(data.rows)
             setTotalCount(data.count)
-            // console.log(totalCount, limit)
-            // debugger
-
         })
     }, [selectedType, selectedBrand, page])
 
