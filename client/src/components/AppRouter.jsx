@@ -8,13 +8,8 @@ import Login from '../pages/Login';
 import Registration from '../pages/Registration';
 
 const AppRouter = () => {
-
     
     const { user } = useContext(Context)
-
-    useEffect(() => {
-        console.log(user)
-    }, [])
 
     return (
         <Routes>

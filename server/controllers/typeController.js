@@ -4,6 +4,7 @@ const ApiError = require('../error/apiError')
 class TypeController {
     async create(req, res) {
         const {name} = req.body
+        // console.log("=================================->", req.body);
         const type = await Type.create({name})
 
         return res.json(type)
