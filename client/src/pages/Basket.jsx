@@ -14,7 +14,8 @@ const Basket = () => {
     
     useEffect(() => {
         
-        fetchBasketItems( user.user.userData.id ).then(data => basket.setBasket( [...basket.basket], data ))
+        const basketId = user.user.userData.id
+        fetchBasketItems( {basketId} ).then(data => basket.setBasket( [...basket.basket], data ))
         
     }, [])
 

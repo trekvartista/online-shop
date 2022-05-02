@@ -15,8 +15,8 @@ class BasketController {
 
     async getAllBasketItems(req, res) {
         
-            const {basketId} = req.params;
-            console.log("=================================->", req.params);
+            const { basketId } = req.body;
+            // console.log("=================================->", basketId);
             const basketItems = await BasketItem.findAndCountAll({
                 where: { basketId },
             });
