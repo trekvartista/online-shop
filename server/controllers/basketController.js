@@ -14,11 +14,15 @@ class BasketController {
     }
 
     async getAllBasketItems(req, res) {
-        let basketItems;
+        
+            const {basketId} = req.params;
+            console.log("=================================->", req.params);
+            const basketItems = await BasketItem.findAndCountAll({
+                where: { basketId },
+            });
 
-        basketItems = await BasketItem.findAndCountAll();
+            return res.json(basketItems);
 
-        return res.json(basketItems);
     }
 }
 

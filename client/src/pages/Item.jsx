@@ -24,11 +24,8 @@ const Item = () => {
     }, []);
 
     const addToBasket = () => {
-        const formData = new FormData()
-        formData.append('itemId', item.id)
-        formData.append('basketId', user.user.userData.id)
 
-        addItemToBasket(formData).then(data => console.log(data))
+        addItemToBasket({ itemId: item.id, basketId: user.user.userData.id }).then(data => console.log(data))
     }
 
     return (

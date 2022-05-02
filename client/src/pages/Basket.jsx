@@ -1,13 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {Context} from '../App'
 import {API_URL} from '../utils/consts'
 import star from "../assets/star.png"
 import ClearIcon from '@mui/icons-material/Clear';
 import { Badge, Button, ButtonGroup, Tooltip } from '@mui/material';
+import { fetchBasketItems } from '../api/itemAPI';
 
 const Basket = () => {
 
-    const {items} = useContext(Context)
+    // const {items} = useContext(Context)
+    const { basket } = useContext(Context)
+    const { user } = useContext(Context)
+    
+    useEffect(() => {
+        
+        fetchBasketItems( user.user.userData.id ).then(data => basket.setBasket( [...basket.basket], data ))
+        
+    }, [])
 
     const [quantity, setQuantity] = useState(1)
 
@@ -17,7 +26,7 @@ const Basket = () => {
 
     return (
         <div className='flex gap-4 bg-gray-100 py-4 px-10'>
-            <div className='flex flex-col w-2/3 bg-white shadow-xl p-10'>
+            {/* <div className='flex flex-col w-2/3 bg-white shadow-xl p-10'>
 
                 <div className='flex flex-row justify-between pb-5'>
                     <span className='text-2xl font-mono font-bold'>My Items</span>
@@ -70,7 +79,7 @@ const Basket = () => {
 
             <div className='flex flex-col w-1/3 bg-white shadow-xl'>
 
-            </div>
+            </div> */}
         </div>
     );
 };
