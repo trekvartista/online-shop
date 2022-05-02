@@ -12,7 +12,7 @@ export const authRoutes = [
         Component: Admin
     },
     {
-        path: BASKET_ROUTE,
+        path: BASKET_ROUTE + '/:id',
         Component: Basket
     },
 ]

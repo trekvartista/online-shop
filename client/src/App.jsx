@@ -40,13 +40,10 @@ const App = () => {
     ]
 
     const [user, setUser] = useState({})
-
+    const [basket, setBasket] = useState([])
     const [items, setItems] = useState([])
-
     const [types, setTypes] = useState([])
-
     const [brands, setBrands] = useState([])
-
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -72,6 +69,7 @@ const App = () => {
         <Context.Provider
             value={{
                 user: { user, setUser },
+                basket: { basket, setBasket },
                 items: { items, setItems },
                 types: { types, setTypes },
                 brands: { brands, setBrands },
