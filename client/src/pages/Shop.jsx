@@ -33,7 +33,7 @@ const Shop = () => {
     const {brands} = useContext(Context)
     const {items} = useContext(Context)
     
-    const limit = 2
+    const limit = 10
 
     useEffect(() => {
         fetchTypes().then(data => types.setTypes(data))

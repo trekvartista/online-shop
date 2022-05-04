@@ -47,7 +47,7 @@ export const addItemToBasket = async (basketItem) => {
 }
 
 export const fetchBasketItems = async (basket) => {
-    const { data } = await $authHost.put("api/basket/", basket)
+    const { data } = await $authHost.put("api/basket", basket)
 
     return data
 }

@@ -24,15 +24,14 @@ const Login = ({ error, captchaURL }) => {
     }, [])
 
     const onSubmit = async (email, password) => {
+
         try {
             const userInfo = await login(email, password);
-            // user.isAuth = true;
-            // user.userData = { ...userInfo };
 
             user.setUser({ isAuth: true, userData: { ...userInfo } })
 
             navigate(SHOP_ROUTE)
-
+            
         } catch (e) {
             alert(e.response.data.msg);
         }

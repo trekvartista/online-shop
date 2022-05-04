@@ -1,11 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-// import { itemContext, userContext } from '../main';
 import {authRoutes, publicRoutes} from '../routes'
-import {LOGIN_ROUTE, SHOP_ROUTE, REGISTER_ROUTE} from '../utils/consts'
+import { SHOP_ROUTE } from '../utils/consts'
 import {Context} from '../App'
-import Login from '../pages/Login';
-import Registration from '../pages/Registration';
 
 const AppRouter = () => {
     

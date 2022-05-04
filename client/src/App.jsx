@@ -50,12 +50,9 @@ const App = () => {
         setTimeout(() => {
             authCheck()
                 .then((data) => {
-                    // user.isAuth = true;
-                    // user.userData = { ...data }
 
                     const user = { isAuth: true, userData: { ...data } }
                     setUser(user)
-                    // console.log(user.isAuth)
                 })
                 .finally(() => setLoading(false));
         }, 100)
