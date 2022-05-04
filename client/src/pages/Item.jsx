@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { fetchConcreteItem , addItemToBasket} from "../api/itemAPI";
+import { fetchConcreteItem, addItemToBasket } from "../api/itemAPI";
 import star from "../assets/star.png";
 import { API_URL } from "../utils/consts";
-import {Context} from '../App'
+import { Context } from "../App";
+import { Alert, Snackbar } from "@mui/material";
 
 const Item = () => {
     const [item, setItem] = useState({
@@ -13,8 +14,18 @@ const Item = () => {
         price: 0,
     });
 
+    const [isAdded, setIsAdded] = useState(false)
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setIsAdded(false);
+      };
+
     const { id } = useParams();
-    const {user} = useContext(Context)
+    const { user } = useContext(Context);
 
     useEffect(() => {
         fetchConcreteItem(id).then((data) => {
@@ -25,8 +36,14 @@ const Item = () => {
 
     const addToBasket = () => {
 
-        addItemToBasket({ itemId: item.id, basketId: user.user.userData.id }).then(data => console.log(data))
-    }
+        setIsAdded(true)
+
+        addItemToBasket({
+            itemId: item.id,
+            basketId: user.user.userData.id,
+        });
+
+    };
 
     return (
         <div>
@@ -60,12 +77,14 @@ const Item = () => {
                         </div>
                     </div>
 
-                    <div className="mt-auto ml-auto flex flex-row">
-                        <div className="bg-gradient-to-tr from-red-500 to-violet-600 text-center rounded p-2 text-white cursor-pointer mr-5">
+                    <div className="mt-auto ml-auto flex flex-row gap-5">
+                        <div className="bg-gradient-to-tr from-red-500 to-violet-600 text-center rounded p-2 text-white cursor-pointer hover:scale-[98%] transition-all">
                             <button onClick={() => {}}>Buy now!</button>
                         </div>
-                        <div className="bg-gradient-to-br from-yellow-400 to-orange-400 text-center rounded p-2 text-white cursor-pointer">
-                            <button onClick={() => addToBasket()}>Add to my basket</button>
+                        <div className="bg-gradient-to-br from-yellow-400 to-orange-400 text-center rounded p-2 text-white cursor-pointer hover:scale-[98%] transition-all">
+                            <button onClick={() => addToBasket()}>
+                                Add to my basket
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -86,6 +105,16 @@ const Item = () => {
                     ))}
                 </div>
             </div>
+            <Snackbar open={isAdded} autoHideDuration={3000} onClose={handleClose}>
+                <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    variant="filled"
+                    sx={{ width: "100%" }}
+                >
+                    You've added an item to your basket!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
