@@ -46,6 +46,14 @@ export const addItemToBasket = async (basketItem) => {
     return data
 }
 
+export const removeItemFromBasket = async (itemId, basketId) => {
+    const { data } = await $authHost.delete("api/basket", {params: {
+        itemId, basketId
+    }})
+
+    return data
+}
+
 export const fetchBasketItems = async (basket) => {
     const { data } = await $authHost.put("api/basket", basket)
 
