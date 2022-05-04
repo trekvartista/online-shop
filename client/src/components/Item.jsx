@@ -24,8 +24,8 @@ const Item = ({ item }) => {
                     <div className="text-gray-500 flex flex-row justify-between gap-1">
 
                         <div className="flex flex-row gap-2">
-                            <span>{item_type.name}</span>
-                            <span>{item_brand.name}</span>
+                            <span>{item_type && item_type.name}</span>
+                            <span>{item_brand && item_brand.name}</span>
                         </div>
 
                         <div className="flex items-center">
