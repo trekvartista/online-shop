@@ -139,13 +139,13 @@ const Navbar = () => {
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
 
-                        <NavLink to={BASKET_ROUTE} className="hover:text-gray-300 transition-colors duration-500">
+                        <NavLink to={user.user.isAuth && BASKET_ROUTE || LOGIN_ROUTE} className="hover:text-gray-300 transition-colors duration-500">
                             <ShoppingCartIcon />
                             <span>
                                 My Basket
                             </span>
                         </NavLink>
-                        <NavLink to={ADMIN_ROUTE}>
+                        <NavLink to={user.user.isAuth && ADMIN_ROUTE || LOGIN_ROUTE}>
                             <button className="mx-5 p-1 border-2 border-white rounded">
                                 ADMIN PAGE
                             </button>
