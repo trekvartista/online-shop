@@ -96,9 +96,7 @@ const Item = () => {
                     {item.info.map((spec, i) => (
                         <div
                             key={spec.id}
-                            className={`${
-                                !(i % 2) ? "bg-gray-100" : "bg-transparent"
-                            } p-1`}
+                            className={`${!(i % 2) ? "bg-gray-100" : "bg-transparent"} p-1`}
                         >
                             <b>{spec.title}</b>: {spec.description}
                         </div>

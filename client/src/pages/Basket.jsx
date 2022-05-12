@@ -3,7 +3,7 @@ import {Context} from '../App'
 import {API_URL} from '../utils/consts'
 import star from "../assets/star.png"
 import ClearIcon from '@mui/icons-material/Clear';
-import { Badge, Button, ButtonGroup, Tooltip } from '@mui/material';
+import { Alert, Badge, Button, ButtonGroup, Snackbar, Tooltip } from '@mui/material';
 import { fetchBasketItems, removeItemFromBasket , fetchItems} from '../api/itemAPI';
 
 const Basket = () => {
@@ -11,7 +11,18 @@ const Basket = () => {
     const { items } = useContext(Context)
     const { basket } = useContext(Context)
     const { user } = useContext(Context)
+
     const basketId = user.user.userData.id
+
+    const [isRemoved, setIsRemoved] = useState(false)
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setIsRemoved(false);
+    };
 
     const [basketItems, setBasketItems] = useState([])
     
@@ -40,11 +51,14 @@ const Basket = () => {
     }
 
     const removeFromBasket = (itemId) => {
+
+        setIsRemoved(true)
+
         removeItemFromBasket(itemId, user.user.userData.id)
         setBasketItems( basketItems.filter( item => item.id !== itemId ) )
     }
 
-    console.log(basketItems)
+    // console.log(basketItems)
 
     return (
         <div className='flex gap-4 bg-gray-100 py-4 px-10'>
@@ -102,6 +116,17 @@ const Basket = () => {
             </div>
 
             <div className='flex flex-col w-1/3 bg-white shadow-xl'>
+
+            <Snackbar open={isRemoved} autoHideDuration={3000} onClose={handleClose}>
+                <Alert
+                    onClose={handleClose}
+                    severity="warning"
+                    variant="filled"
+                    sx={{ width: "100%" }}
+                >
+                    You've removed an item from your basket!
+                </Alert>
+            </Snackbar>
 
             </div>
         </div>
